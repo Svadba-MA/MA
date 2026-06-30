@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мадина & Андрей — 15.08.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Marck+Script&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1c2b3a;
+    --deep-sea:#2e4356;
+    --dust-blue:#9fb4c7;
+    --pale-blue:#dde8ef;
+    --rosewater:#e9c9c0;
+    --pear:#ece0bd;
+    --sand:#f4efe6;
+    --cream:#faf8f4;
+    --ink:#26333f;
+    --gold:#b89b6e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Cormorant Garamond', serif; font-weight:500; letter-spacing:0.02em;}
+  .script{font-family:'Marck Script', cursive; font-weight:400;}
+  a{color:inherit;}
+
+  /* ---------- progress thread ---------- */
+  .thread{
+    position:fixed; left:0; top:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--dust-blue), var(--gold));
+    z-index:999; transition:width .1s linear;
+  }
+
+  /* ---------- floating hearts ---------- */
+  .hearts-layer{
+    position:fixed; inset:0; pointer-events:none; z-index:5; overflow:hidden;
+  }
+  .heart{
+    position:absolute; top:100%; opacity:0;
+    animation:floatHeart linear infinite;
+    will-change:transform, opacity;
+  }
+  @keyframes floatHeart{
+    0%{transform:translateY(0) translateX(0) rotate(0deg); opacity:0;}
+    8%{opacity:.85;}
+    50%{transform:translateY(-55vh) translateX(var(--drift)) rotate(var(--spin));}
+    92%{opacity:.7;}
+    100%{transform:translateY(-115vh) translateX(calc(var(--drift) * 1.6)) rotate(calc(var(--spin) * 2)); opacity:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .heart{animation:none; display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    color:#fff;
+    background:
+      linear-gradient(180deg, rgba(20,33,46,.35) 0%, rgba(16,28,40,.55) 55%, rgba(12,22,33,.85) 100%),
+      radial-gradient(120% 90% at 50% 0%, #3a5269 0%, #243a4d 45%, #15232f 100%);
+    padding:40px 20px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.5) 0, transparent 50%),
+      radial-gradient(1.5px 1.5px at 75% 60%, rgba(255,255,255,.35) 0, transparent 50%),
+      radial-gradient(2px 2px at 60% 15%, rgba(255,255,255,.4) 0, transparent 50%),
+      radial-gradient(1px 1px at 35% 80%, rgba(255,255,255,.3) 0, transparent 50%),
+      radial-gradient(1.5px 1.5px at 90% 35%, rgba(255,255,255,.4) 0, transparent 50%);
+    pointer-events:none;
+    animation:twinkle 6s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle{from{opacity:.5} to{opacity:1}}
+  .hero-eyebrow{
+    font-size:13px; letter-spacing:.35em; text-transform:uppercase;
+    opacity:.8; margin-bottom:18px; font-weight:300;
+  }
+  .hero-names{
+    font-size:clamp(48px, 11vw, 110px);
+    line-height:1; letter-spacing:.01em;
+  }
+  .hero-amp{
+    display:block; font-family:'Marck Script', cursive;
+    font-size:clamp(28px, 5vw, 46px); color:var(--rosewater);
+    margin:6px 0;
+  }
+  .hero-date{
+    margin-top:28px; font-size:clamp(15px,2.4vw,19px);
+    letter-spacing:.25em; text-transform:uppercase; font-weight:300;
+    display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:center;
+  }
+  .hero-date .dot{width:4px;height:4px;border-radius:50%;background:var(--gold);}
+  .hero-scroll{
+    position:absolute; bottom:30px; left:50%; transform:translateX(-50%);
+    font-size:11px; letter-spacing:.2em; text-transform:uppercase; opacity:.7;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .hero-scroll .line{width:1px; height:30px; background:rgba(255,255,255,.5); animation:scrollLine 2s ease-in-out infinite;}
+  @keyframes scrollLine{0%{transform:scaleY(0); transform-origin:top;} 50%{transform:scaleY(1); transform-origin:top;} 51%{transform-origin:bottom;} 100%{transform:scaleY(0); transform-origin:bottom;}}
+
+  /* ---------- SECTION shell ---------- */
+  section{
+    padding:100px 24px;
+    position:relative;
+  }
+  .section-inner{max-width:760px; margin:0 auto;}
+  .eyebrow{
+    font-size:12px; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; margin-bottom:10px; text-align:center;
+  }
+  .section-title{
+    font-size:clamp(30px,5vw,46px); text-align:center; margin-bottom:8px; color:var(--navy);
+  }
+  .section-sub{
+    font-family:'Marck Script',cursive; text-align:center; color:var(--dust-blue);
+    font-size:clamp(18px,3vw,24px); margin-bottom:40px;
+  }
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- LETTER / intro ---------- */
+  .letter-section{background:var(--sand);}
+  .letter{
+    text-align:center; font-size:18px; line-height:1.9; color:var(--ink);
+    max-width:600px; margin:0 auto; text-wrap:pretty;
+  }
+  .nowrap{white-space:nowrap;}
+
+  /* ---------- countdown ---------- */
+  .countdown{margin-top:48px; text-align:center;}
+  .cd-eyebrow{
+    font-size:12px; letter-spacing:.25em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:20px; font-weight:600;
+  }
+  .cd-row{display:flex; justify-content:center; gap:16px; flex-wrap:wrap;}
+  .cd-block{
+    background:#fff; border:1px solid rgba(28,43,58,.1);
+    border-radius:6px; padding:18px 20px; min-width:84px;
+    box-shadow:0 10px 24px rgba(28,43,58,.06);
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .cd-num{
+    font-family:'Cormorant Garamond', serif; font-size:34px; font-weight:600;
+    color:var(--navy); line-height:1; font-variant-numeric:tabular-nums;
+  }
+  .cd-lbl{
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:#8a93a0; margin-top:8px; font-weight:500;
+  }
+  @media(max-width:480px){
+    .cd-block{min-width:68px; padding:14px 12px;}
+    .cd-num{font-size:26px;}
+  }
+
+  /* ---------- DETAILS GRID (venue / timing) ---------- */
+  .details-section{background:var(--cream);}
+  .detail-card{
+    border:1px solid rgba(28,43,58,.12);
+    border-radius:2px;
+    padding:34px 30px;
+    margin-bottom:22px;
+    background:#fff;
+    position:relative;
+  }
+  .detail-card h3{font-size:24px; color:var(--navy); margin-bottom:10px;}
+  .detail-card p{font-size:15px; line-height:1.75; color:#5a6772; font-weight:300;}
+  .map-embed{
+    margin-top:22px; border-radius:4px; overflow:hidden;
+    border:1px solid rgba(28,43,58,.12);
+    box-shadow:0 10px 26px rgba(28,43,58,.08);
+  }
+  .map-embed iframe{
+    width:100%; height:320px; display:block; border:none;
+  }
+
+  /* timeline */
+  .timeline{margin-top:10px;}
+  .tl-item{
+    display:flex; gap:24px; padding:22px 0; border-bottom:1px dashed rgba(28,43,58,.15);
+  }
+  .tl-item:last-child{border-bottom:none;}
+  .tl-time{
+    font-family:'Cormorant Garamond',serif; font-size:26px; color:var(--gold); min-width:80px;
+  }
+  .tl-text h4{font-size:18px; font-weight:600; color:var(--navy); margin-bottom:4px; font-family:'Manrope';}
+  .tl-text p{font-size:14px; color:#5a6772; font-weight:300; line-height:1.6;}
+
+  /* ---------- DRESS CODE ---------- */
+  .dress-section{
+    background:linear-gradient(180deg, var(--deep-sea), var(--navy));
+    color:#fff;
+  }
+  .dress-section .section-title, .dress-section .eyebrow{color:#fff;}
+  .dress-section .eyebrow{color:var(--rosewater);}
+  .dress-section .section-sub{color:var(--pale-blue);}
+  .dress-intro{text-align:center; max-width:560px; margin:0 auto 50px; font-size:15px; line-height:1.9; font-weight:300; opacity:.9;}
+  .palette-row{
+    display:flex; justify-content:center; gap:22px; flex-wrap:wrap; margin-bottom:50px;
+  }
+  .swatch{
+    width:84px; height:84px; border-radius:50%;
+    box-shadow:0 10px 26px rgba(0,0,0,.3), inset 0 0 0 4px rgba(255,255,255,.08);
+    position:relative;
+  }
+  .swatch span{
+    position:absolute; bottom:-26px; left:50%; transform:translateX(-50%);
+    font-size:11px; letter-spacing:.1em; white-space:nowrap; text-transform:uppercase; opacity:.75; font-weight:300;
+  }
+  .sw1{background:#a98a64;} .sw2{background:#e9c9c0;} .sw3{background:#ece0bd;}
+  .sw4{background:#cfd9e0;} .sw5{background:#9fb4c7;}
+
+  .avoid-box{
+    max-width:560px; margin:0 auto; text-align:center;
+    border-top:1px solid rgba(255,255,255,.15); border-bottom:1px solid rgba(255,255,255,.15);
+    padding:30px 10px; font-size:14px; line-height:1.9; font-weight:300; opacity:.9;
+  }
+  .avoid-box b{color:var(--rosewater); font-weight:600;}
+
+  /* ---------- RSVP FORM ---------- */
+  .rsvp-section{background:var(--sand);}
+  .rsvp-card{
+    background:#fff; border-radius:4px;
+    box-shadow:0 30px 70px rgba(28,43,58,.1);
+    padding:48px 36px;
+  }
+  .field{margin-bottom:26px;}
+  .field label{
+    display:block; font-size:12px; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--navy); margin-bottom:10px; font-weight:600;
+  }
+  .field-hint{
+    text-transform:none; letter-spacing:0; font-weight:400; color:#9aa3ad; font-size:11px;
+  }
+  .field input[type=text], .field input[type=tel]{
+    width:100%; padding:13px 16px; border:1px solid #d8d2c4; border-radius:2px;
+    font-family:'Manrope'; font-size:15px; background:var(--cream); color:var(--ink);
+    transition:border-color .2s;
+  }
+  .field input:focus{outline:none; border-color:var(--gold);}
+  .choice-group{display:flex; gap:12px; flex-wrap:wrap;}
+  .choice{
+    border:1px solid #d8d2c4; padding:12px 20px; border-radius:30px; font-size:14px;
+    cursor:pointer; user-select:none; transition:.2s; background:var(--cream);
+  }
+  .choice:hover{border-color:var(--gold);}
+  .choice.active{background:var(--navy); border-color:var(--navy); color:#fff;}
+  .radio-group label{
+    display:flex; align-items:center; gap:10px; font-weight:400; text-transform:none;
+    letter-spacing:0; font-size:15px; margin-bottom:10px; cursor:pointer; color:var(--ink);
+  }
+  .radio-group input{accent-color:var(--navy); width:17px; height:17px;}
+  .alcohol-wrap{display:none;}
+  .alcohol-wrap.show{display:block; animation:fadeIn .4s ease;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(-6px);} to{opacity:1; transform:translateY(0);}}
+  .cry-emoji{
+    display:inline-block; opacity:0; transform:scale(0.3) rotate(-15deg);
+    transition:opacity .35s ease, transform .35s cubic-bezier(.34,1.56,.64,1);
+    margin-left:4px;
+  }
+  .cry-emoji.show{opacity:1; transform:scale(1.15) rotate(0deg);}
+  .submit-btn{
+    width:100%; padding:17px; background:var(--navy); color:#fff; border:none;
+    border-radius:2px; font-size:13px; letter-spacing:.2em; text-transform:uppercase;
+    cursor:pointer; transition:background .25s; margin-top:10px; font-weight:600;
+  }
+  .submit-btn:hover{background:#0f1c28;}
+  .submit-btn:disabled{opacity:.6; cursor:not-allowed;}
+  .form-msg{text-align:center; margin-top:18px; font-size:14px; display:none;}
+  .form-msg.show{display:block;}
+  .form-msg.ok{color:#3a7d5c;}
+  .form-msg.err{color:#b3543f;}
+  .success-state{display:none; text-align:center; padding:30px 0;}
+  .success-state.show{display:block;}
+  .success-state .script{font-size:34px; color:var(--gold); display:block; margin-bottom:14px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--navy); color:rgba(255,255,255,.6); text-align:center;
+    padding:50px 20px 36px; font-size:13px; font-weight:300; letter-spacing:.05em;
+  }
+  footer .script{display:block; font-size:24px; color:var(--rosewater); margin-bottom:10px;}
+
+  @media(max-width:560px){
+    section{padding:70px 18px;}
+    .rsvp-card{padding:32px 22px;}
+  }
+
+  /* ---------- ADMIN ---------- */
+  #admin-screen{
+    display:none; min-height:100vh; background:var(--sand); padding:40px 20px; font-family:'Manrope';
+  }
+  #admin-screen.show{display:block;}
+  #main-site.hide{display:none;}
+  .admin-box{max-width:420px; margin:80px auto; background:#fff; padding:40px; border-radius:6px; box-shadow:0 20px 50px rgba(0,0,0,.08); text-align:center;}
+  .admin-box h2{color:var(--navy); margin-bottom:6px;}
+  .admin-box p{color:#888; font-size:13px; margin-bottom:24px;}
+  .admin-box input{width:100%; padding:13px; border:1px solid #ddd; border-radius:4px; margin-bottom:14px; font-size:15px;}
+  .admin-box button{width:100%; padding:13px; background:var(--navy); color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:600;}
+  .admin-box .err-msg{color:#c0392b; font-size:13px; margin-top:10px; display:none;}
+  .admin-dash{max-width:1100px; margin:0 auto; display:none;}
+  .admin-dash.show{display:block;}
+  .admin-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; flex-wrap:wrap; gap:14px;}
+  .admin-top h1{color:var(--navy); font-size:30px;}
+  .admin-top button{padding:10px 18px; border:1px solid var(--navy); background:transparent; color:var(--navy); border-radius:4px; cursor:pointer; font-size:13px;}
+  .stat-row{display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:16px; margin-bottom:30px;}
+  .stat-card{background:#fff; border-radius:6px; padding:20px; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,.05);}
+  .stat-card .num{font-size:30px; font-family:'Cormorant Garamond',serif; color:var(--navy); font-weight:600;}
+  .stat-card .lbl{font-size:12px; color:#888; text-transform:uppercase; letter-spacing:.08em; margin-top:4px;}
+  .admin-table-wrap{background:#fff; border-radius:6px; box-shadow:0 4px 14px rgba(0,0,0,.05); overflow-x:auto;}
+  table.admin-table{width:100%; border-collapse:collapse; font-size:14px;}
+  table.admin-table th{text-align:left; padding:14px 16px; background:var(--navy); color:#fff; font-weight:500; font-size:12px; text-transform:uppercase; letter-spacing:.05em; white-space:nowrap;}
+  table.admin-table td{padding:13px 16px; border-bottom:1px solid #eee; white-space:nowrap;}
+  table.admin-table tr:last-child td{border-bottom:none;}
+  .badge{padding:4px 10px; border-radius:20px; font-size:12px; font-weight:600;}
+  .badge.yes{background:#e3f3e9; color:#2f7d52;}
+  .badge.no{background:#fbe9e6; color:#c0392b;}
+  .admin-loading, .admin-empty{text-align:center; padding:60px 20px; color:#999;}
+  .refresh-row{display:flex; justify-content:flex-end; margin-bottom:14px;}
+  .refresh-row button{padding:8px 16px; border:1px solid var(--navy); background:#fff; color:var(--navy); border-radius:4px; cursor:pointer; font-size:13px;}
+</style>
+</head>
+<body>
+
+<div class="thread" id="thread"></div>
+<div class="hearts-layer" id="heartsLayer"></div>
+
+<!-- ================= MAIN SITE ================= -->
+<div id="main-site">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Приглашаем на свадьбу</div>
+    <h1 class="hero-names">Мадина<span class="hero-amp">&amp;</span>Андрей</h1>
+    <div class="hero-date"><span class="dot"></span>15 августа 2026<span class="dot"></span>Галерея банкетов, Казань<span class="dot"></span></div>
+    <div class="hero-scroll"><span>Листайте</span><span class="line"></span></div>
+  </section>
+
+  <!-- LETTER -->
+  <section class="letter-section">
+    <div class="section-inner reveal">
+      <div class="eyebrow">Дорогие наши</div>
+      <h2 class="section-title">Родные и любимые</h2>
+      <p class="letter">
+        Мы хотим, чтобы вы разделили с нами радость и были на торжестве в самый трогательный и счастливый день нашей жизни. <span class="nowrap">15 августа</span> 2026 года мы будем бесконечно рады видеть вас в кругу самых близких людей.
+      </p>
+
+      <div class="countdown" id="countdown">
+        <div class="cd-eyebrow">До встречи осталось</div>
+        <div class="cd-row">
+          <div class="cd-block"><span class="cd-num" id="cdDays">00</span><span class="cd-lbl">дней</span></div>
+          <div class="cd-block"><span class="cd-num" id="cdHours">00</span><span class="cd-lbl">часов</span></div>
+          <div class="cd-block"><span class="cd-num" id="cdMinutes">00</span><span class="cd-lbl">минут</span></div>
+          <div class="cd-block"><span class="cd-num" id="cdSeconds">00</span><span class="cd-lbl">секунд</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUE & TIMING -->
+  <section class="details-section">
+    <div class="section-inner">
+      <div class="eyebrow reveal">15.08.2026</div>
+      <h2 class="section-title reveal">Место проведения</h2>
+      <div class="section-sub reveal">галерея банкетов</div>
+
+      <div class="detail-card reveal">
+        <h3>Галерея банкетов</h3>
+        <p>Церемония и торжественный банкет пройдут в одном месте — Галерея банкетов, ул. Пушкина, 52, Казань. Удобный маршрут и время в пути до площадки можно посмотреть на карте.</p>
+        <div class="map-embed">
+          <iframe src="https://yandex.ru/map-widget/v1/?text=Казань%2C%20улица%20Пушкина%2C%2052&z=16" frameborder="0" loading="lazy" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top:60px;">
+        <div class="eyebrow">Как пройдёт день</div>
+        <h2 class="section-title">Тайминг дня</h2>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">16:00</div>
+            <div class="tl-text"><h4>Сбор гостей</h4><p>Встречаем, знакомимся, настраиваемся на волшебный лад — самое время не опаздывать.</p></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">17:00</div>
+            <div class="tl-text"><h4>Церемония</h4><p>Самый трогательный момент дня.</p></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">17:30</div>
+            <div class="tl-text"><h4>Welcome-фуршет</h4><p>Наслаждаемся общением с гостями и первыми тостами.</p></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">19:00</div>
+            <div class="tl-text"><h4>Торжественный банкет</h4><p>Самое время для душевных поздравлений и танцев.</p></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">23:00</div>
+            <div class="tl-text"><h4>Завершение вечера</h4><p>Расходимся с самыми тёплыми впечатлениями.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section class="dress-section">
+    <div class="section-inner">
+      <div class="eyebrow reveal">Dress code</div>
+      <h2 class="section-title reveal">Дресс-код</h2>
+      <p class="dress-intro reveal">
+        Поддержите нас вашими улыбками и объятиями, а также красивыми нарядами в палитре торжества.
+      </p>
+
+      <div class="palette-row reveal">
+        <div class="swatch sw1"></div>
+        <div class="swatch sw2"></div>
+        <div class="swatch sw3"></div>
+        <div class="swatch sw4"></div>
+        <div class="swatch sw5"></div>
+      </div>
+
+      <div class="avoid-box reveal">
+        <b>Подарки:</b> ваши пожелания в конвертах будут лучшими подарками, которые помогут исполнить наши мечты. <br>
+        <b>Цветы:</b> просим не дарить нам цветы — не успеем насладиться их красотой.
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp-section" id="rsvp">
+    <div class="section-inner">
+      <div class="eyebrow reveal">RSVP</div>
+      <h2 class="section-title reveal">Анкета гостя</h2>
+      <div class="section-sub reveal">подтвердите своё присутствие</div>
+
+      <div class="rsvp-card reveal">
+        <form id="rsvpForm">
+          <div class="field">
+            <label for="guestName">Ваше имя и фамилия</label>
+            <input type="text" id="guestName" required placeholder="Например, Иван Петров">
+          </div>
+
+          <div class="field">
+            <label for="guestPhone">Телефон для связи</label>
+            <input type="tel" id="guestPhone" required placeholder="+7 900 000-00-00">
+          </div>
+
+          <div class="field">
+            <label>Сможете быть с нами 15 августа?</label>
+            <div class="choice-group" id="attendGroup">
+              <div class="choice" data-value="Да, буду">Да, буду 🎉</div>
+              <div class="choice" data-value="К сожалению, нет">К сожалению, нет</div>
+            </div>
+          </div>
+
+          <div class="field alcohol-wrap" id="alcoholWrap">
+            <label>Что будете пить? <span class="field-hint">(можно выбрать несколько)</span></label>
+            <div class="radio-group">
+              <label><input type="checkbox" name="alcohol" value="Вино белое"> Вино белое</label>
+              <label><input type="checkbox" name="alcohol" value="Вино красное"> Вино красное</label>
+              <label><input type="checkbox" name="alcohol" value="Шампанское"> Шампанское</label>
+              <label><input type="checkbox" name="alcohol" value="Водка"> Водка</label>
+              <label><input type="checkbox" name="alcohol" value="Коньяк"> Коньяк</label>
+              <label><input type="checkbox" name="alcohol" value="Не пью" id="notDrinkCheckbox"> Не пью <span class="cry-emoji" id="cryEmoji">😢</span></label>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">Отправить анкету</button>
+          <div class="form-msg" id="formMsg"></div>
+        </form>
+
+        <div class="success-state" id="successState">
+          <span class="script">Спасибо!</span>
+          Ваш ответ получен — с нетерпением ждём встречи с вами на нашей свадьбе.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="script">Мадина &amp; Андрей</span>
+    15 августа 2026 · До встречи на нашем особенном дне
+  </footer>
+
+</div>
+
+<!-- ================= ADMIN ================= -->
+<div id="admin-screen">
+
+  <div class="admin-box" id="adminLoginBox">
+    <h2>Админ-панель</h2>
+    <p>Введите пароль для просмотра анкет гостей</p>
+    <input type="password" id="adminPw" placeholder="Пароль">
+    <button onclick="adminLogin()">Войти</button>
+    <div class="err-msg" id="adminErr">Неверный пароль</div>
+  </div>
+
+  <div class="admin-dash" id="adminDash">
+    <div class="admin-top">
+      <h1>Ответы гостей</h1>
+      <button onclick="adminLogout()">Выйти</button>
+    </div>
+
+    <div class="stat-row" id="statRow"></div>
+
+    <div class="refresh-row">
+      <button onclick="loadAdminData()">↻ Обновить</button>
+    </div>
+
+    <div class="admin-table-wrap">
+      <div id="tableHolder"><div class="admin-loading">Загрузка ответов…</div></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ======================= CONFIG ======================= */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzyHRXcoBwdcS4huGy2OVMOOnHZf9GgjeiRlt8MM5a7w2rBz57KzEi1__jyWzA7vQQC/exec";
+const ADMIN_PASSWORD = "madina&andrey2026";
+
+/* ======================= COUNTDOWN ======================= */
+(function(){
+  const weddingDate = new Date('2026-08-15T16:00:00');
+  const elD = document.getElementById('cdDays');
+  const elH = document.getElementById('cdHours');
+  const elM = document.getElementById('cdMinutes');
+  const elS = document.getElementById('cdSeconds');
+  if(!elD) return;
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    const diff = weddingDate - new Date();
+    if(diff <= 0){
+      elD.textContent = '00'; elH.textContent = '00'; elM.textContent = '00'; elS.textContent = '00';
+      return;
+    }
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const minutes = Math.floor((diff / (1000*60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    elD.textContent = pad(days);
+    elH.textContent = pad(hours);
+    elM.textContent = pad(minutes);
+    elS.textContent = pad(seconds);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* ======================= FLOATING HEARTS ======================= */
+(function(){
+  const layer = document.getElementById('heartsLayer');
+  const emojis = ['💙','🤍','💕'];
+  function spawnHeart(){
+    const heart = document.createElement('span');
+    heart.className = 'heart';
+    heart.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    const size = 14 + Math.random()*18;
+    const duration = 9 + Math.random()*7;
+    const left = Math.random()*100;
+    const drift = (Math.random()*120 - 60) + 'px';
+    const spin = (Math.random()*60 - 30) + 'deg';
+    heart.style.left = left + 'vw';
+    heart.style.fontSize = size + 'px';
+    heart.style.setProperty('--drift', drift);
+    heart.style.setProperty('--spin', spin);
+    heart.style.animationDuration = duration + 's';
+    layer.appendChild(heart);
+    setTimeout(()=>heart.remove(), duration*1000 + 200);
+  }
+  for(let i=0;i<6;i++){ setTimeout(spawnHeart, i*900); }
+  setInterval(spawnHeart, 1400);
+})();
+
+/* ======================= SCROLL REVEAL ======================= */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:.15});
+revealEls.forEach(el=>io.observe(el));
+
+window.addEventListener('scroll', ()=>{
+  const h = document.documentElement;
+  const pct = (h.scrollTop)/(h.scrollHeight - h.clientHeight) * 100;
+  document.getElementById('thread').style.width = pct + '%';
+});
+
+/* ======================= RSVP FORM LOGIC ======================= */
+let attendValue = "";
+document.querySelectorAll('#attendGroup .choice').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#attendGroup .choice').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    attendValue = btn.dataset.value;
+    const wrap = document.getElementById('alcoholWrap');
+    if(attendValue === "Да, буду"){
+      wrap.classList.add('show');
+    } else {
+      wrap.classList.remove('show');
+    }
+  });
+});
+
+document.querySelectorAll('input[name=alcohol]').forEach(box=>{
+  box.addEventListener('change', ()=>{
+    const cry = document.getElementById('cryEmoji');
+    const notDrink = document.getElementById('notDrinkCheckbox');
+    if(box.id === 'notDrinkCheckbox' && box.checked){
+      document.querySelectorAll('input[name=alcohol]').forEach(other=>{
+        if(other !== box) other.checked = false;
+      });
+      cry.classList.add('show');
+    } else {
+      if(box.id !== 'notDrinkCheckbox' && box.checked){
+        notDrink.checked = false;
+        cry.classList.remove('show');
+      }
+      if(!notDrink.checked){
+        cry.classList.remove('show');
+      }
+    }
+  });
+});
+
+document.getElementById('rsvpForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('guestName').value.trim();
+  const phone = document.getElementById('guestPhone').value.trim();
+  const msg = document.getElementById('formMsg');
+  const btn = document.getElementById('submitBtn');
+
+  if(!name || !phone){
+    msg.textContent = "Пожалуйста, заполните имя и телефон.";
+    msg.className = "form-msg show err";
+    return;
+  }
+  if(!attendValue){
+    msg.textContent = "Пожалуйста, подтвердите присутствие.";
+    msg.className = "form-msg show err";
+    return;
+  }
+  let alcohol = "";
+  if(attendValue === "Да, буду"){
+    const checked = Array.from(document.querySelectorAll('input[name=alcohol]:checked'));
+    if(!checked.length){
+      msg.textContent = "Пожалуйста, выберите напиток (или «Не пью»).";
+      msg.className = "form-msg show err";
+      return;
+    }
+    alcohol = checked.map(c=>c.value).join(', ');
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Отправка...";
+  msg.className = "form-msg";
+
+  const payload = {
+    name: name,
+    phone: phone,
+    attend: attendValue,
+    alcohol: alcohol,
+    date: new Date().toLocaleString('ru-RU')
+  };
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
+  .then(()=>{
+    document.getElementById('rsvpForm').style.display = 'none';
+    document.getElementById('successState').classList.add('show');
+  })
+  .catch(()=>{
+    msg.textContent = "Не удалось отправить. Проверьте интернет-соединение и попробуйте ещё раз.";
+    msg.className = "form-msg show err";
+    btn.disabled = false;
+    btn.textContent = "Отправить анкету";
+  });
+});
+
+/* ======================= ROUTING #admin ======================= */
+function checkRoute(){
+  const hearts = document.getElementById('heartsLayer');
+  if(window.location.hash === '#admin'){
+    document.getElementById('main-site').classList.add('hide');
+    document.getElementById('admin-screen').classList.add('show');
+    if(hearts) hearts.style.display = 'none';
+  } else {
+    document.getElementById('main-site').classList.remove('hide');
+    document.getElementById('admin-screen').classList.remove('show');
+    if(hearts) hearts.style.display = '';
+  }
+}
+window.addEventListener('hashchange', checkRoute);
+checkRoute();
+
+/* ======================= ADMIN LOGIC ======================= */
+function adminLogin(){
+  const pw = document.getElementById('adminPw').value;
+  if(pw === ADMIN_PASSWORD){
+    sessionStorage.setItem('weddingAdminAuthed', '1');
+    document.getElementById('adminLoginBox').style.display = 'none';
+    document.getElementById('adminDash').classList.add('show');
+    loadAdminData();
+  } else {
+    document.getElementById('adminErr').style.display = 'block';
+  }
+}
+function adminLogout(){
+  sessionStorage.removeItem('weddingAdminAuthed');
+  document.getElementById('adminDash').classList.remove('show');
+  document.getElementById('adminLoginBox').style.display = 'block';
+  document.getElementById('adminPw').value = '';
+}
+if(sessionStorage.getItem('weddingAdminAuthed') === '1'){
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('adminLoginBox').style.display = 'none';
+    document.getElementById('adminDash').classList.add('show');
+    loadAdminData();
+  });
+}
+
+function loadAdminData(){
+  const holder = document.getElementById('tableHolder');
+  holder.innerHTML = '<div class="admin-loading">Загрузка ответов…</div>';
+
+  const callbackName = 'jsonpCallback_' + Date.now();
+  window[callbackName] = function(data){
+    renderAdminData(data);
+    delete window[callbackName];
+    document.body.removeChild(script);
+  };
+
+  const script = document.createElement('script');
+  script.src = SCRIPT_URL + '?action=getAll&callback=' + callbackName;
+  script.onerror = function(){
+    holder.innerHTML = '<div class="admin-empty">Не удалось загрузить данные. Проверьте, что SCRIPT_URL настроен верно.</div>';
+  };
+  document.body.appendChild(script);
+}
+
+function renderAdminData(rows){
+  rows = rows || [];
+  const holder = document.getElementById('tableHolder');
+  const statRow = document.getElementById('statRow');
+
+  const total = rows.length;
+  const yesCount = rows.filter(r=>r.attend === "Да, буду").length;
+  const noCount = total - yesCount;
+  const alcoholCounts = {};
+  rows.forEach(r=>{
+    if(r.alcohol){
+      r.alcohol.split(',').map(s=>s.trim()).filter(Boolean).forEach(drink=>{
+        alcoholCounts[drink] = (alcoholCounts[drink]||0)+1;
+      });
+    }
+  });
+  const topAlcohol = Object.keys(alcoholCounts).sort((a,b)=>alcoholCounts[b]-alcoholCounts[a])[0] || "—";
+
+  statRow.innerHTML = `
+    <div class="stat-card"><div class="num">${total}</div><div class="lbl">Всего анкет</div></div>
+    <div class="stat-card"><div class="num">${yesCount}</div><div class="lbl">Будут</div></div>
+    <div class="stat-card"><div class="num">${noCount}</div><div class="lbl">Не смогут</div></div>
+    <div class="stat-card"><div class="num">${topAlcohol}</div><div class="lbl">Популярный напиток</div></div>
+  `;
+
+  if(!rows.length){
+    holder.innerHTML = '<div class="admin-empty">Анкет пока нет. Как только гости начнут отвечать — они появятся здесь.</div>';
+    return;
+  }
+
+  let html = '<table class="admin-table"><thead><tr><th>Имя</th><th>Телефон</th><th>Присутствие</th><th>Напиток</th><th>Дата ответа</th></tr></thead><tbody>';
+  rows.slice().reverse().forEach(r=>{
+    const badge = r.attend === "Да, буду"
+      ? '<span class="badge yes">Да</span>'
+      : '<span class="badge no">Нет</span>';
+    html += `<tr>
+      <td>${escapeHtml(r.name||'')}</td>
+      <td>${escapeHtml(r.phone||'')}</td>
+      <td>${badge}</td>
+      <td>${escapeHtml(r.alcohol||'—')}</td>
+      <td>${escapeHtml(r.date||'')}</td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+  holder.innerHTML = html;
+}
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+</script>
+
+</body>
+</html>
